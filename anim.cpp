@@ -109,11 +109,11 @@ void morphColor(uint16_t tick, uint16_t morph_time,
 uint8_t getLegoTime() {
   switch (random(0, 3)) {
     case 0:
-      return 2;
+      return 4; // 2;
     case 1:
-      return 8;
+      return 16; // 8;
     default:
-      return 16;
+      return 32; // 16;
   }
 }
 
@@ -142,12 +142,12 @@ Mode::Mode(uint16_t user_eeprom_addr, uint8_t user_prime, uint8_t user_num_color
 void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
   switch (prime) {
     case PRIME_STROBE:
-      if (tick >= 5 + 8) {
+      if (tick >= 10 + 16) { // 5 + 8) {
         tick = 0;
         cur_color = (cur_color + 1) % num_colors;
       }
 
-      if (tick < 5) {
+      if (tick < 10) { // < 5) {
         unpackColor(palette[cur_color], &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
@@ -155,12 +155,12 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_HYPER:
-      if (tick >= 17 + 17) {
+      if (tick >= 34 + 34) { // 17 + 17) {
         tick = 0;
         cur_color = (cur_color + 1) % num_colors;
       }
 
-      if (tick < 17) {
+      if (tick < 34) { //  17) {
         unpackColor(palette[cur_color], &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
@@ -168,12 +168,12 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_DOPS:
-      if (tick >= 1 + 10) {
+      if (tick >= 3 + 20) { // 1 + 10) {
         tick = 0;
         cur_color = (cur_color + 1) % num_colors;
       }
 
-      if (tick < 1) {
+      if (tick < 3) { // 1) {
         unpackColor(palette[cur_color], &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
@@ -181,12 +181,12 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_STROBIE:
-      if (tick >= 3 + 23) {
+      if (tick >= 6 + 46) { // 3 + 23) {
         tick = 0;
         cur_color = (cur_color + 1) % num_colors;
       }
 
-      if (tick < 3) {
+      if (tick < 6) { // 3) {
         unpackColor(palette[cur_color], &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
@@ -194,43 +194,44 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_PULSE:
-      if (tick >= 100 + 25) {
+      if (tick >= 200 + 50) { // 100 + 25) {
         tick = 0;
         cur_color = (cur_color + 1) % num_colors;
       }
 
-      if (tick < 50) {
+      if (tick < 100) { // 50) {
         unpackColor(palette[cur_color], &r0, &g0, &b0);
-        morphColor(tick, 50, 0, 0, 0, r0, g0, b0, &_r, &_g, &_b);
-      } else if (tick < 100) {
+        // morphColor(tick, 50, 0, 0, 0, r0, g0, b0, &_r, &_g, &_b);
+        morphColor(tick, 100, 0, 0, 0, r0, g0, b0, &_r, &_g, &_b);
+      } else if (tick < 200) { // 100) {
         unpackColor(palette[cur_color], &r0, &g0, &b0);
-        morphColor(tick - 50, 50, r0, g0, b0, 0, 0, 0, &_r, &_g, &_b);
+        //morphColor(tick - 50, 50, r0, g0, b0, 0, 0, 0, &_r, &_g, &_b);
+        morphColor(tick - 100, 100, r0, g0, b0, 0, 0, 0, &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
       }
       break;
 
     case PRIME_SEIZURE:
-      if (tick >= 5 + 95) {
+      if (tick >= 10 + 190) { // 5 + 95) {
         tick = 0;
         cur_color = (cur_color + 1) % num_colors;
       }
 
-      if (tick < 5) {
-        unpackColor(palette[cur_color], &r0, &g0, &b0);
-        morphColor(tick, 5, 0, 0, 0, r0, g0, b0, &_r, &_g, &_b);
+      if (tick < 10) { // 5) {
+        unpackColor(palette[cur_color], &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
       }
       break;
 
     case PRIME_TRACER:
-      if (tick >= 3 + 23) {
+      if (tick >= 6 + 46) { // 3 + 23) {
         tick = 0;
         cur_color = (cur_color + 1) % (num_colors - 1);
       }
 
-      if (tick < 3) {
+      if (tick < 6) { // 3) {
         unpackColor(palette[(cur_color + 1) % num_colors], &_r, &_g, &_b);
       } else {
         unpackColor(palette[0], &_r, &_g, &_b);
@@ -238,16 +239,22 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_DASHDOPS:
-      if (tick >= ((num_colors - 1) * 11) + ((1 + 10) * 7) + 10) {
+      counter1 = num_colors - 1;
+      // dash + 7 dops 7 extra blank dop
+      //if (tick >= (counter0 * 11) + ((1 + 10) * 7) + 10) {
+      if (tick >= (counter1 * 22) + (23 * 7) + 20) {
         tick = 0;
       }
 
-      if (tick < (num_colors - 1) * 11) {
-        counter0 = (tick / 11) + 1;
-        unpackColor(palette[counter0], &_r, &_g, &_b);
+      //if (tick < counter1 * 11) {
+      if (tick < counter1 * 22) {
+        //counter0 = (tick / 11) + 1;
+        unpackColor(palette[(tick / 22) + 1], &_r, &_g, &_b);
       } else {
-        counter0 = tick - ((num_colors - 1) * 11);
-        if (counter0 % 11 == 10) {
+        //counter0 = tick - (counter1 * 11);
+        counter0 = tick - (counter1 * 22);
+        //if (counter0 % 11 == 10) {
+        if (counter0 % 23 > 19) {
           unpackColor(palette[0], &_r, &_g, &_b);
         } else {
           _r = 0; _g = 0; _b = 0;
@@ -256,12 +263,13 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_BLINKE:
-      if (tick >= (num_colors * 5) + 50) {
+      if (tick >= (num_colors * 10) + 100) { // 5) + 50) {
         tick = 0;
       }
 
-      if (tick < (num_colors * 5)) {
-        unpackColor(palette[tick / 5], &_r, &_g, &_b);
+      if (tick < num_colors * 10) { // 5)) {
+        //unpackColor(palette[tick / 5], &_r, &_g, &_b);
+        unpackColor(palette[tick / 10], &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
       }
@@ -269,16 +277,18 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
 
     case PRIME_EDGE:
       if (counter0 == 0) counter0 = num_colors - 1;
-      if (tick >= (counter0 * 4) + 5 + 20) {
+      //if (tick >= (counter0 * 4) + 5 + 20) {
+      if (tick >= (counter0 * 8) + 10 + 40) {
         tick = 0;
       }
 
-      if (tick < counter0 * 2) {
-        unpackColor(palette[counter0 - (tick / 2)], &_r, &_g, &_b);
-      } else if (tick < (counter0 * 2) + 5) {
+      if (tick < counter0 * 4) { // 2) {
+        //unpackColor(palette[counter0 - (tick / 2)], &_r, &_g, &_b);
+        unpackColor(palette[counter0 - (tick / 4)], &_r, &_g, &_b);
+      } else if (tick < (counter0 * 4) + 10) { // 2) + 5) {
         unpackColor(palette[0], &_r, &_g, &_b);
-      } else if (tick < (counter0 * 4) + 5) {
-        unpackColor(palette[((tick - ((counter0 * 2) + 5)) / 2) + 1], &_r, &_g, &_b);
+      } else if (tick < (counter0 * 8) + 10) { // 4) + 5) {
+        unpackColor(palette[((tick - ((counter0 * 4) + 10)) / 4) + 1], &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
       }
@@ -286,7 +296,7 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
 
     case PRIME_LEGO:
       if (counter0 == 0) counter0 = getLegoTime();
-      if (tick >= counter0 + 8) {
+      if (tick >= counter0 + 16) { // 8) {
         tick = 0;
         cur_color = (cur_color + 1) % num_colors;
         counter0 = getLegoTime();
@@ -300,7 +310,7 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_CHASE:
-      if (tick >= 60) {
+      if (tick >= 120) { // 60) {
         tick = 0;
         counter0++;
         if (counter0 >= 4) {
@@ -309,8 +319,8 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
         }
       }
 
-      if (tick < 50) {
-        counter1 = tick / 10;
+      if (tick < 100) { // 50) {
+        counter1 = tick / 20; // 10;
         if (counter0 == 0) {
           unpackColor(palette[cur_color], &_r, &_g, &_b);
         } else {
@@ -328,7 +338,7 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_MORPH:
-      if (tick >= 17 + 17) {
+      if (tick >= 34 + 34) { // 17 + 17) {
         tick = 0;
         counter0++;
         if (counter0 >= 4) {
@@ -337,17 +347,18 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
         }
       }
 
-      if (tick < 17) {
+      if (tick < 34) { // 17) {
         unpackColor(palette[cur_color],                    &r0, &g0, &b0);
         unpackColor(palette[(cur_color + 1) % num_colors], &r1, &g1, &b1);
-        morphColor(tick + (34 * counter0), 34 * 4, r0, g0, b0, r1, g1, b1, &_r, &_g, &_b);
+        //morphColor(tick + (34 * counter0), 34 * 4, r0, g0, b0, r1, g1, b1, &_r, &_g, &_b);
+        morphColor(tick + (68 * counter0), 68 * 8, r0, g0, b0, r1, g1, b1, &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
       }
       break;
 
     case PRIME_RIBBON:
-      if (tick >= 11) {
+      if (tick >= 22) { // 11) {
         tick = 0;
         cur_color = (cur_color + 1) % num_colors;
       }
@@ -355,13 +366,13 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_COMET:
-      if (tick >= 15 + 8) {
+      if (tick >= 30 + 16) { // 15 + 8) {
         tick = 0;
-        counter0 += (counter1 == 0) ? 1 : -1;
+        counter0 += (counter1 == 0) ? 2 : -2; // 1 : -1;
         if (counter0 <= 0) {
           counter1 = 0;
           cur_color = (cur_color + 1) % num_colors;
-        } else if (counter0 >= 15) {
+        } else if (counter0 >= 30) { // 15) {
           counter1 = 1;
         }
       }
@@ -374,7 +385,7 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
       break;
 
     case PRIME_CANDY:
-      if (tick >= 5 + 8) {
+      if (tick >= 10 + 16) { // 5 + 8) {
         tick = 0;
         counter0++;
         if (counter0 >= 3) {
@@ -387,7 +398,7 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
         }
       }
 
-      if (tick < 5) {
+      if (tick < 10) { // 5) {
         unpackColor(palette[(cur_color + counter0) % num_colors], &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;

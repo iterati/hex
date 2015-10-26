@@ -41,7 +41,7 @@ class Mode {
     uint32_t tick;
     uint16_t eeprom_addr;
     uint8_t cur_color;
-    int8_t counter0, counter1;
+    int16_t counter0, counter1;
 
     uint8_t prime;
     uint8_t num_colors;
