@@ -79,34 +79,62 @@ Hex is an OSM firmware that loves the number 16.
 * Hold 1.5s - Accept and save. Go to **Play**. Flashes white.
 
 
+## Palette
+
+**NOTE**: Colors displayed on the monitor differ from colors displayed on the light. These colors are approximations. Anything grey tends more to white than grey when shown on the LED.
+
+![Palette](pngs/palette.png)
+
 ## Animations
 
+These images represent the default mode set of animations. 1 pixel represents 0.5s of animation.
+
+**NOTE**: Colors displayed on the monitor differ from colors displayed on the light. These colors are approximations. Anything grey tends more to white than grey when shown on the LED.
+
 ### Strobe
-5ms/8ms Strobe
 ![Strobe](pngs/anim01.png)
 
-* Hyper - 17ms/17ms Strobe
-* Dops - 1ms/10ms Strobe
-* Strobie - 3ms/23ms Strobe
-* Pulse - 50ms Fade In and Out/25ms Off
-* Seizure - 5ms Fade In/95ms Off
-* Tracer - 3ms Color/23ms Color 1
-* Dash Dops
-  * 7ms Per Color for Color 2+
-  * 7 1ms/10ms Strobes of Color 1
-* Blink-E - 5ms Per Color/50ms Off
-* Edge 
-  * 2ms Per Color for Last Color to Color 2
-  * 5ms Color 1
-  * 2ms Per Color for Color 2 to Last Color
-* Lego - 2, 8, or 16ms/8ms Random Strobe
-* Chase 
-  * 50ms Color A/10ms Off
-  * 10ms Color B/10ms Off/30ms Color A/10ms Off
-  * 20ms Color B/10ms Off/20ms Color A/10ms Off
-  * 30ms Color B/10ms Off/10ms Color A/10ms Off
-  * Repeat with B and next color...
-* Morph - 17ms/17ms strobe where A morphs to B over 4 strobes
-* Ribbon - 11ms per color
-* Comet - 15ms/8ms Color time starts as 1 of 15ms and then increases and decreases before the color changes
-* Candy - 5ms/8ms Strobe of first 3 colors for 3 cycles, then drop first color and add next
+### Hyper
+![Hyper](pngs/anim02.png)
+
+### Dops
+![Hyper](pngs/anim03.png)
+
+### Strobie
+![Strobie](pngs/anim04.png)
+
+### Pulse
+![Pulse](pngs/anim05.png)
+
+### Seizure
+![Seizure](pngs/anim06.png)
+
+### Tracer
+![Tracer](pngs/anim06.png)
+
+### Dash Dops
+![Dash Dops](pngs/anim07.png)
+
+### Blink-E
+![Blink-E](pngs/anim08.png)
+
+### Edge
+![Edge](pngs/anim09.png)
+
+### Lego
+![Lego](pngs/anim10.png)
+
+### Chase
+![Chase](pngs/anim11.png)
+
+### Morph
+![Morph](pngs/anim12.png)
+
+### Ribbon
+![Ribbon](pngs/anim13.png)
+
+### Comet
+![Comet](pngs/anim14.png)
+
+### Candy
+![Candy](pngs/anim15.png)
