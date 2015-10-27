@@ -110,31 +110,31 @@ These images represent the default mode set of animations. 1 pixel represents 0.
 ![Seizure](pngs/anim06.png)
 
 ### Tracer
-![Tracer](pngs/anim06.png)
+![Tracer](pngs/anim07.png)
 
 ### Dash Dops
-![Dash Dops](pngs/anim07.png)
+![Dash Dops](pngs/anim08.png)
 
 ### Blink-E
-![Blink-E](pngs/anim08.png)
+![Blink-E](pngs/anim09.png)
 
 ### Edge
-![Edge](pngs/anim09.png)
+![Edge](pngs/anim10.png)
 
 ### Lego
-![Lego](pngs/anim10.png)
+![Lego](pngs/anim11.png)
 
 ### Chase
-![Chase](pngs/anim11.png)
+![Chase](pngs/anim12.png)
 
 ### Morph
-![Morph](pngs/anim12.png)
+![Morph](pngs/anim13.png)
 
 ### Ribbon
-![Ribbon](pngs/anim13.png)
+![Ribbon](pngs/anim14.png)
 
 ### Comet
-![Comet](pngs/anim14.png)
+![Comet](pngs/anim15.png)
 
 ### Candy
-![Candy](pngs/anim15.png)
+![Candy](pngs/anim16.png)
