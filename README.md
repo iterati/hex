@@ -1,6 +1,15 @@
-# Spectrum
+# Hex
 
-Spectrum is an OSM firmware featuring 16 configurable modes with up to 12 colors per mode.
+Hex is an OSM firmware that loves the number 16.
+
+
+## Features
+* **16 Strobe Modes** to chose from
+* **16 Modes** to customize
+* **16 Color Slots** per mode
+* **4 16 Slot Bundles** for custom mode playlists
+* **62 Color Palette** (+ blank) with **4 Shades** to chose from
+* Conjuring Mode
 
 
 ##  Installation
@@ -18,16 +27,6 @@ Spectrum is an OSM firmware featuring 16 configurable modes with up to 12 colors
   * Make sure to use 115200 for the speed.
   * Make sure to select "Uno(ATMega328)" from the Device dropdown.
   * Be sure to select the correct .hex file.
-
-
-## Features
-
-* Customize **12** Modes
-* Chose from **16** LED Animations
-* Pick **Up to 12** Colors Per Mode From a **62** Color Palette (plus Blank), each with **4** Shading Levels.
-* Arrange Modes in **4** Bundles
-* Toggle Conjuring Mode (Single-click On/Off) For Any Mode
-* Easy To Use Customization Interface
 
 
 ## Controls
@@ -82,7 +81,10 @@ Spectrum is an OSM firmware featuring 16 configurable modes with up to 12 colors
 
 ## Animations
 
-* Strobe - 5ms/8ms Strobe
+### Strobe
+5ms/8ms Strobe
+![Strobe](pngs/anim01.png)
+
 * Hyper - 17ms/17ms Strobe
 * Dops - 1ms/10ms Strobe
 * Strobie - 3ms/23ms Strobe
