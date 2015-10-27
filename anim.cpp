@@ -283,17 +283,17 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
     case PRIME_EDGE:
       if (counter0 == 0) counter0 = num_colors - 1;
       //if (tick >= (counter0 * 4) + 5 + 20) {
-      if (tick >= (counter0 * 8) + 10 + 40) {
+      if (tick >= (counter0 * 8) + 16 + 40) {
         tick = 0;
       }
 
       if (tick < counter0 * 4) { // 2) {
         //unpackColor(palette[counter0 - (tick / 2)], &_r, &_g, &_b);
         unpackColor(palette[counter0 - (tick / 4)], &_r, &_g, &_b);
-      } else if (tick < (counter0 * 4) + 10) { // 2) + 5) {
+      } else if (tick < (counter0 * 4) + 16) { // 2) + 5) {
         unpackColor(palette[0], &_r, &_g, &_b);
-      } else if (tick < (counter0 * 8) + 10) { // 4) + 5) {
-        unpackColor(palette[((tick - ((counter0 * 4) + 10)) / 4) + 1], &_r, &_g, &_b);
+      } else if (tick < (counter0 * 8) + 16) { // 4) + 5) {
+        unpackColor(palette[((tick - ((counter0 * 4) + 16)) / 4) + 1], &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
       }
