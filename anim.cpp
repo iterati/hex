@@ -356,7 +356,7 @@ void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
         unpackColor(palette[cur_color],                    &r0, &g0, &b0);
         unpackColor(palette[(cur_color + 1) % num_colors], &r1, &g1, &b1);
         //morphColor(tick + (34 * counter0), 34 * 4, r0, g0, b0, r1, g1, b1, &_r, &_g, &_b);
-        morphColor(tick + (68 * counter0), 68 * 8, r0, g0, b0, r1, g1, b1, &_r, &_g, &_b);
+        morphColor(tick + (68 * counter0), 68 * 4, r0, g0, b0, r1, g1, b1, &_r, &_g, &_b);
       } else {
         _r = 0; _g = 0; _b = 0;
       }
