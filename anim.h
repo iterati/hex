@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-#define PALETTE_SIZE      12
+#define PALETTE_SIZE      16
 
 #define PRIME_STROBE      0
 #define PRIME_HYPER       1
@@ -27,9 +27,10 @@ void unpackColor(uint8_t color, uint8_t *r, uint8_t *g, uint8_t *b);
 
 class Mode {
   public:
-    Mode(uint16_t user_eeprom_addr, uint8_t user_prime0, uint8_t user_num_colors,
+    Mode(uint16_t user_eeprom_addr, uint8_t user_prime, uint8_t user_num_colors,
         uint8_t c0, uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t c5,
-        uint8_t c6, uint8_t c7, uint8_t c8, uint8_t c9, uint8_t c10, uint8_t c11);
+        uint8_t c6, uint8_t c7, uint8_t c8, uint8_t c9, uint8_t c10, uint8_t c11,
+        uint8_t c12, uint8_t c13, uint8_t c14, uint8_t c15);
 
     void init();
     void reset();

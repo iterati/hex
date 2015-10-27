@@ -120,7 +120,8 @@ uint8_t getLegoTime() {
 
 Mode::Mode(uint16_t user_eeprom_addr, uint8_t user_prime, uint8_t user_num_colors,
     uint8_t c0, uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t c5,
-    uint8_t c6, uint8_t c7, uint8_t c8, uint8_t c9, uint8_t c10, uint8_t c11)
+    uint8_t c6, uint8_t c7, uint8_t c8, uint8_t c9, uint8_t c10, uint8_t c11,
+    uint8_t c12, uint8_t c13, uint8_t c14, uint8_t c15)
 {
   eeprom_addr = user_eeprom_addr;
   prime = user_prime;
@@ -137,6 +138,10 @@ Mode::Mode(uint16_t user_eeprom_addr, uint8_t user_prime, uint8_t user_num_color
   palette[9] = c9;
   palette[10] = c10;
   palette[11] = c11;
+  palette[12] = c12;
+  palette[13] = c13;
+  palette[14] = c14;
+  palette[15] = c15;
 }
 
 void Mode::render(uint8_t *r, uint8_t *g, uint8_t *b) {
@@ -434,21 +439,29 @@ void Mode::save() {
   EEPROM.update(eeprom_addr + 11, palette[9]);
   EEPROM.update(eeprom_addr + 12, palette[10]);
   EEPROM.update(eeprom_addr + 13, palette[11]);
+  EEPROM.update(eeprom_addr + 14, palette[12]);
+  EEPROM.update(eeprom_addr + 15, palette[13]);
+  EEPROM.update(eeprom_addr + 16, palette[14]);
+  EEPROM.update(eeprom_addr + 17, palette[15]);
 }
 
 void Mode::load() {
-  prime        = EEPROM.read(eeprom_addr + 0);
-  num_colors   = EEPROM.read(eeprom_addr + 1);
-  palette[0]   = EEPROM.read(eeprom_addr + 2);
-  palette[1]   = EEPROM.read(eeprom_addr + 3);
-  palette[2]   = EEPROM.read(eeprom_addr + 4);
-  palette[3]   = EEPROM.read(eeprom_addr + 5);
-  palette[4]   = EEPROM.read(eeprom_addr + 6);
-  palette[5]   = EEPROM.read(eeprom_addr + 7);
-  palette[6]   = EEPROM.read(eeprom_addr + 8);
-  palette[7]   = EEPROM.read(eeprom_addr + 9);
-  palette[8]   = EEPROM.read(eeprom_addr + 10);
-  palette[9]   = EEPROM.read(eeprom_addr + 11);
-  palette[10]  = EEPROM.read(eeprom_addr + 12);
-  palette[11]  = EEPROM.read(eeprom_addr + 13);
+  prime       = EEPROM.read(eeprom_addr + 0);
+  num_colors  = EEPROM.read(eeprom_addr + 1);
+  palette[0]  = EEPROM.read(eeprom_addr + 2);
+  palette[1]  = EEPROM.read(eeprom_addr + 3);
+  palette[2]  = EEPROM.read(eeprom_addr + 4);
+  palette[3]  = EEPROM.read(eeprom_addr + 5);
+  palette[4]  = EEPROM.read(eeprom_addr + 6);
+  palette[5]  = EEPROM.read(eeprom_addr + 7);
+  palette[6]  = EEPROM.read(eeprom_addr + 8);
+  palette[7]  = EEPROM.read(eeprom_addr + 9);
+  palette[8]  = EEPROM.read(eeprom_addr + 10);
+  palette[9]  = EEPROM.read(eeprom_addr + 11);
+  palette[10] = EEPROM.read(eeprom_addr + 12);
+  palette[11] = EEPROM.read(eeprom_addr + 13);
+  palette[12] = EEPROM.read(eeprom_addr + 14);
+  palette[13] = EEPROM.read(eeprom_addr + 15);
+  palette[14] = EEPROM.read(eeprom_addr + 16);
+  palette[15] = EEPROM.read(eeprom_addr + 17);
 }
