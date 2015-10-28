@@ -5,6 +5,7 @@
 
 #define PALETTE_SIZE      16
 
+#define NUM_PRIMES        16
 #define PRIME_STROBE      0
 #define PRIME_HYPER       1
 #define PRIME_DOPS        2
@@ -36,6 +37,18 @@ class Mode {
     void reset();
     void load();
     void save();
+
+    void prime_strobe(uint8_t c_time, uint8_t b_time);
+    void prime_pulse(uint8_t c_time, uint8_t b_time);
+    void prime_tracer(uint8_t c_time, uint8_t b_time);
+    void prime_dashdops(uint8_t c_time, uint8_t d_time, uint8_t b_time, uint8_t dops);
+    void prime_blinke(uint8_t c_time, uint8_t b_time);
+    void prime_edge(uint8_t c_time, uint8_t e_time, uint8_t b_time);
+    void prime_lego(uint8_t b_time);
+    void prime_chase(uint8_t c_time, uint8_t b_time, uint8_t steps);
+    void prime_morph(uint8_t c_time, uint8_t b_time, uint8_t steps);
+    void prime_comet(uint8_t c_time, uint8_t b_time, uint8_t per_step);
+    void prime_candy(uint8_t c_time, uint8_t b_time, uint8_t pick, uint8_t repeat);
 
     void render(uint8_t *r, uint8_t *g, uint8_t *b);
 
