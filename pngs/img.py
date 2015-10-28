@@ -375,7 +375,7 @@ def make_anim(name, ticks, colors):
         'Pulse': make_pulse(200, 50, colors),
         'Seizure': make_strobe(10, 190, colors),
         'Tracer': make_tracer(6, 46, colors),
-        'Dashdops': make_dashdop(22, 11, colors),
+        'Dashdops': make_dashdop(22, 7, colors),
         'Blinke': make_blinke(10, 100, colors),
         'Edge': make_edge(4, 16, 40, colors),
         'Lego': make_lego(8, colors),
