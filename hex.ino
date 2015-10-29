@@ -295,7 +295,6 @@ void incMode() {
 uint8_t times_clicked = 0;
 uint32_t bpm_pressed = 0;
 uint32_t total_time = 0;
-float bpm = 0.0;
 
 void handlePress(bool pressed) {
   switch (button_state) {
@@ -615,14 +614,10 @@ void handlePress(bool pressed) {
 
     case S_BUNDLE_SELECT_BPM:
       if (!pressed) {
-        /* bpm_enabled = true; */
-        /* if (bpm_enabled) { Serial.println(F("bpm switching enabled")); } */
-        /* else {             Serial.println(F("bpm switching disabled")); } */
         total_time = 0;
         times_clicked = 0;
         since_press = 0;
         transitioned = true;
-        /* button_state = S_PLAY_OFF; */
         bpm_pressed = 0;
         Serial.println(F("setting bpm"));
         button_state = S_BPM_SET_OFF;
