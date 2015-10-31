@@ -34,8 +34,13 @@ SOFTWARE.
 #define DEBUG
 #define NUM_MODES 16
 #define NUM_BUNDLES 4
-const uint8_t current_version = 20;
+const uint8_t current_version = 21;
 
+#define VERSION_ADDR       1023
+#define BUNDLE_EEPROM_ADDR 900
+uint16_t addrs[NUM_MODES] = {
+  520, 540, 560, 580, 600, 620, 640, 660, 680, 700, 720, 740, 760, 780, 800, 820,
+};
 
 class Mode {
   public:
@@ -44,8 +49,7 @@ class Mode {
     void render(uint8_t& r, uint8_t& g, uint8_t& b) { prime.render(r, g, b); }
 
     void init() {
-      prime[0].reset();
-      prime[1].reset();
+      prime.reset();
       edit_color = 0;
     }
 
@@ -62,10 +66,6 @@ class Mode {
 
     Prime prime;
     uint8_t edit_color;
-};
-
-uint16_t addrs[NUM_MODES] = {
-  520, 540, 560, 580, 600, 620, 640, 660, 680, 700, 720, 740, 760, 780, 800, 820,
 };
 
 Mode mode00 = Mode();
@@ -189,7 +189,6 @@ const PROGMEM uint8_t gamma_table[256] = {
 #define PIN_B 5
 #define PIN_BUTTON 2
 #define PIN_LDO A3
-#define BUNDLE_EEPROM_ADDR 900
 #define FRAME_TICKS 32000
 
 void saveBundles() {
@@ -216,6 +215,12 @@ void saveModes() {
 
 void loadModes() {
   for (uint8_t i = 0; i < NUM_MODES; i++) modes[i]->load(addrs[i]);
+}
+
+void clearMemory() {
+  for (int i = 0 ; i < EEPROM.length() ; i++) {
+    EEPROM.write(i, 0);
+  }
 }
 
 void resetModes() {
@@ -252,17 +257,18 @@ void setup() {
   digitalWrite(PIN_LDO, HIGH);
 
   Serial.println(F("\nWelcome to Hex!"));
-  if (current_version != EEPROM.read(512)) {
-    Serial.println(F("Version mismatch. Writing defaults to EEPROM."));
+  if (current_version != EEPROM.read(VERSION_ADDR)) {
+    Serial.println(F("Version mismatch. Clearning EEPROM."));
+    clearMemory();
+    Serial.print(F("Writing factory settings v")); Serial.print(current_version); Serial.println(F("to EEPROM."));
     resetModes();
     saveBundles();
-    EEPROM.update(512, current_version);
+    EEPROM.update(VERSION_ADDR, current_version);
   } else {
-    Serial.println(F("Version match. Reading saved settings."));
+    Serial.print(F("Version match. Reading saved settings v")); Serial.print(current_version); Serial.println(F("from EEPROM."));
     loadModes();
     loadBundles();
   }
-  Serial.print(F("Hex v0.1. EEPROM Version: ")); Serial.println(current_version);
 
   for (uint8_t i = 0; i < NUM_MODES; i++) modes[i]->init();
 
